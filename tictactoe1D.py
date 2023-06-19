@@ -7,14 +7,14 @@ def evaluate_board(board):
     """A function that accepts the string with the board of 1D tic-tac-toe as argument
     and returns one character based on the state of the game."""
     
-    if "xxx" in board: # player won
+    if "xxx" in board:  # player won
         result = "x"
-    elif "ooo" in board: # PC won
+    elif "ooo" in board:  # PC won
         result = "o"
-    elif "_" not in board: # the board is full and there is no winner
+    elif "_" not in board:  # the board is full and there is no winner
         print(board)
         result = "!"
-    else: # game coninues
+    else:  # game continue
         result = "-"
 
     return result
@@ -24,7 +24,8 @@ def evaluate_board(board):
 def move(board, mark, position):
     """ A function that returns the game board with the given mark in the given position."""
     
-    board = board[:position] + mark + board[position + 1:] # the board is devided to bustrings. Firsts sustring is from beginning to chosen position.
+    board = board[:position] + mark + board[position + 1:]  # the board is divided to substrings.
+    # First substring is from beginning to chosen position.
     # the second substring is from position +1 till the end. 
     return board
 
@@ -40,17 +41,17 @@ def validate_position(position, board):
         print("This position is occupied")
         return False
     else:
-        return True # if any of conditions above is not met, the position is ok to be occupied by the user or PC
+        return True  # if any of conditions above is not met, the position is ok to be occupied by the user or PC
 
 
 # player move
 def player_move(board):
-    is_valid = False # if the position is occupied or out of range, a player must choose another position
-    while is_valid == False:  # position is invalid
+    is_valid = False  # if the position is occupied or out of range, a player must choose another position
+    while not is_valid:  # position is invalid
         user_input = input("Enter your move position:")
-        if user_input.isdigit(): #validation for the inserted character in the input is a number
-            position = int(user_input) # user input will be used as an argument for position to take
-            is_valid = validate_position(position, board) # is_valid == True
+        if user_input.isdigit():  # validation for the inserted character in the input is a number
+            position = int(user_input)  # user input will be used as an argument for position to take
+            is_valid = validate_position(position, board)  # is_valid == True
         else:
             print("Invalid input")
 
@@ -59,21 +60,21 @@ def player_move(board):
 
 # step 4: pc choice function
 def pc_move(board):
-    """A funtion that takes board as an argument an returnes updated board with the random PC choice."""
+    """A function that takes board as an argument and returns updated board with the random PC choice."""
 
-    is_valid = False # the same validation process as for the player to make sure the position is not occupied
-    while is_valid == False:  # position is invalid
+    is_valid = False  # the same validation process as for the player to make sure the position is not occupied
+    while not is_valid:  # position is invalid
         pc_input = randrange(0, 20)
         position = pc_input
-        is_valid = validate_position(position, board) #if not occupied, the is_valid is True
-        print("PC choice is: ", position) #shows whic position PC chosed
+        is_valid = validate_position(position, board)  # if not occupied, the is_valid is True
+        print("PC choice is: ", position)  # shows which position PC chosen
 
     return move(board, "o", position)
 
 
 # step 5: function for starting game
 def tictactoe_1D():
-    """ A funtion for 1D tic-tac-toe, player versus PC."""
+    """ A function for 1D tic-tac-toe, player versus PC."""
     
     # create board
     board = "_" * 20
@@ -84,13 +85,14 @@ def tictactoe_1D():
         # call player move
         board = player_move(board)
         print(board)
-        if evaluate_board(board) == "x": # if there already is "xxx", makes no sense to ask computer. The loop must be finished.
+        if evaluate_board(board) == "x":  # if there already is "xxx", makes no sense to ask computer.
+            # The loop must be finished.
             break
         # call pc_move
         board = pc_move(board)
         print(board)
 
-    game_result = evaluate_board(board) # print play result
+    game_result = evaluate_board(board)  # print play result
     if game_result == "x":
         print("Player won")
     elif game_result == "o":
