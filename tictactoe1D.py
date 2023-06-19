@@ -17,7 +17,7 @@ def evaluate_board(board):
     else: # game coninues
         result = "-"
 
-    return winner
+    return result
 
 
 # step 2: move function
@@ -31,7 +31,7 @@ def move(board, mark, position):
 
 # step 3: make sure a user will not insert no negative numbers, too large numbers, spot is not empty
 def validate_position(position, board):
-  """A function that checks that a player/PC doesn't choose a number out of board range or already taken positions."""
+    """A function that checks that a player/PC doesn't choose a number out of board range or already taken positions."""
     
     if position < 0 or position > 19:
         print("Number is outside of range 0-19")
@@ -59,7 +59,7 @@ def player_move(board):
 
 # step 4: pc choice function
 def pc_move(board):
-   """A funtion that takes board as an argument an returnes updated board with the random PC choice."""
+    """A funtion that takes board as an argument an returnes updated board with the random PC choice."""
 
     is_valid = False # the same validation process as for the player to make sure the position is not occupied
     while is_valid == False:  # position is invalid
