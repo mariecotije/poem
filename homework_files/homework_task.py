@@ -16,7 +16,7 @@ parser.add_argument('--verbose', action='store_true', help='Expanded version for
 args = parser.parse_args()  # parse the arguments
 
 
-def capital_letters(input_file, output_file):
+def content_change(input_file, output_file):
     """Simple program that changes all letters to capital in a given text file and returns new file."""
     if args.verbose:
         print('The script will perform changes of the input file content')
@@ -36,5 +36,5 @@ def capital_letters(input_file, output_file):
             print('reversed text: ' + content)
 
 
-capital_letters(args.input_file, args.output_file)
+content_change(args.input_file, args.output_file)
 
